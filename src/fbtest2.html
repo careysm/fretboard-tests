@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head><title>String-Fret Test</title></head>
+<body>
+
+<h2>Fretboard Memory Test (string/fret)</h2>
+
+<p><a href="fbtest1.html">Switch to string/note</a></p>
+
+<button type="button"
+onclick="bar=startup()">
+Click me to start the test.</button>
+<button type="button"
+onClick="clearInterval(bar)">
+Click me to stop</button>
+
+<script>
+function startup() {
+	intvl=setInterval(runTest, 6000);
+    runTest();
+    return intvl;
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+}
+
+function runTest() {
+	strings = ['E','B','G','D','A','E'];
+    frets = ['1','2','3','4','5','6','7','8','9','10','11','12'];
+    answers =
+      [['F','F#/Gb','G','G#/Ab','A','A#/Bb','B','C','C#/Db','D','D#/Eb','E'],
+       ['C','C#/Db','D','D#/Eb','E','F','F#/Gb','G','G#/Ab','A','A#/Bb','B'],
+       ['G#/Ab','A','A#/Bb','B','C','C#/Db','D','D#/Eb','E','F','F#/Gb','G'],
+       ['D#/Eb','E','F','F#/Gb','G','G#/Ab','A','A#/Bb','B','C','C#/Db','D'],
+       ['A#/Bb','B','C','C#/Db','D','D#/Eb','E','F','F#/Gb','G','G#/Ab','A'],
+       ['F','F#/Gb','G','G#/Ab','A','A#/Bb','B','C','C#/Db','D','D#/Eb','E']];
+               
+    string = getRandomInt(6);
+    fret = getRandomInt(12);
+    document.getElementById('answer').style.visibility = "hidden";               
+    document.getElementById('string').innerHTML = "STRING: " + strings[string];
+    document.getElementById('fret').innerHTML = "FRET: " + frets[fret];
+    document.getElementById('answer').innerHTML = "ANSWER: " + answers[string][fret];  
+    setTimeout(function(){ document.getElementById('answer').style.visibility = "visible"; }, 4000);
+}
+
+</script>
+<font size=22>
+<p id="string">STRING:</p>
+<p id="fret">FRET:</p>
+<p style="visibility: visible" id="answer">ANSWER:</p>
+</font>
+
+</body>
+</html> 
+
